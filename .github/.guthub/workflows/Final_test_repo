@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      -main
+  pull_request:
+    branches:
+      -main
+
+# Jobs
+jobs:
+  build-and-analyze:
+    runs-on: ubuntu-latest
+    steps:
+      -name: Python Action
+        uses: jse162/Action-workflow@2.1.0
+        with:
+          token:${{secret.GITHUB_SECRET}}
+
+-run: |
+  echo "Install required dependencies"
+  sudo apt-get update
+  sudo apt-get install python3
+
+-run: |
+  echo "Run, Build Application using scripts"
+  python3 -c
+  scripts = ['./script.py', './script2.py']
